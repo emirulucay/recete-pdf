@@ -27,13 +27,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Quote by Emir Ulucay",
     description: "Modern, hızlı ve profesyonel teklif & fatura oluşturma aracı.",
-    images: ["/opengraph-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Quote by Emir Ulucay",
     description: "Modern, hızlı ve profesyonel teklif & fatura oluşturma aracı.",
-    images: ["/opengraph-image.png"],
   },
   icons: {
     icon: [
