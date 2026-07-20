@@ -149,7 +149,12 @@ export default function Home() {
     return (
       <div className="min-h-screen w-full flex flex-col items-center justify-center bg-muted/30 p-4 font-plex">
         <div className="w-full max-w-md bg-surface border border-border rounded-xl shadow-2xl p-8 flex flex-col gap-6">
-          <div className="text-center">
+          <div className="text-center flex flex-col items-center">
+            <div className="flex items-center justify-center gap-0 mb-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="Quote Logo" className="w-16 h-16 object-contain" />
+              <span className="text-4xl font-bold tracking-tighter text-[#1b365d] leading-none mb-0.5">UOTE</span>
+            </div>
             <h1 className="text-2xl font-bold tracking-tight text-primary">Hoş Geldiniz</h1>
             <p className="text-sm text-muted-foreground mt-2">
               Fatura oluşturmaya başlamak için önce şirketinizi veya serbest çalışan profilinizi oluşturun.

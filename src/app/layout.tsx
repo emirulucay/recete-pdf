@@ -21,8 +21,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SaaS Invoice Generator",
-  description: "Swiss & High-Contrast Invoice Generator",
+  metadataBase: new URL("https://emirulucay.com"),
+  title: "Quote by Emir Ulucay",
+  description: "Modern, hızlı ve profesyonel teklif & fatura oluşturma aracı. Emir Uluçay tarafından geliştirildi.",
+  openGraph: {
+    title: "Quote by Emir Ulucay",
+    description: "Modern, hızlı ve profesyonel teklif & fatura oluşturma aracı.",
+    images: ["/opengraph-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Quote by Emir Ulucay",
+    description: "Modern, hızlı ve profesyonel teklif & fatura oluşturma aracı.",
+    images: ["/opengraph-image.png"],
+  }
 };
 
 export default function RootLayout({
