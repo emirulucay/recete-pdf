@@ -244,7 +244,8 @@ export default function Home() {
       {activeProfile && (
         <>
           {/* Left Panel */}
-          <div className="w-full lg:w-[450px] xl:w-[500px] h-full overflow-y-auto border-r border-border bg-surface p-6 md:p-8 shrink-0 flex flex-col gap-8">
+          <div className="w-full lg:w-[450px] xl:w-[500px] h-full border-r border-border bg-surface shrink-0 flex flex-col relative z-10">
+            <div className="flex-1 overflow-y-auto p-6 md:p-8 flex flex-col gap-8">
             
             {/* Profile Switcher & Logo */}
             <section className="flex flex-col gap-4">
@@ -364,6 +365,7 @@ export default function Home() {
                     >
                       <div className="flex-1">
                         <Input
+                          id={`service-name-${item.id}`}
                           placeholder="Hizmet Adı"
                           value={item.name}
                           maxLength={65}
@@ -403,7 +405,15 @@ export default function Home() {
                 <Button 
                   variant="dashed" 
                   className="mt-2 w-full" 
-                  onClick={addLineItem}
+                  onClick={() => {
+                    addLineItem();
+                    setTimeout(() => {
+                      const inputs = document.querySelectorAll<HTMLInputElement>('input[id^="service-name-"]');
+                      if (inputs.length > 0) {
+                        inputs[inputs.length - 1].focus();
+                      }
+                    }, 50);
+                  }}
                   disabled={lineItems.length >= 7}
                 >
                   <Plus className="w-4 h-4 mr-2" />
@@ -412,8 +422,9 @@ export default function Home() {
               </div>
             </section>
 
+            </div>
             {/* Action Buttons */}
-            <div className="mt-auto pt-8 flex flex-col gap-3">
+            <div className="shrink-0 p-6 md:p-8 border-t border-border bg-surface">
               <Button onClick={handleDownloadPDF} className="w-full py-6 text-base shadow-lg">
                 <Download className="w-5 h-5 mr-2" />
                 PDF Olarak İndir
