@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://emirulucay.com"),
+  metadataBase: new URL("https://quote.emirulucay.com"),
   title: "Quote by Emir Ulucay",
   description: "Modern, hızlı ve profesyonel teklif & fatura oluşturma aracı. Emir Uluçay tarafından geliştirildi.",
   openGraph: {
