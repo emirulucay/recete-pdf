@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Profile, LineItem, InvoiceData } from "../types";
 import { toast } from "sonner";
 
-export const DEFAULT_COMPANY_LOGO = "https://images.unsplash.com/photo-1605106325682-3482f7c1c9c4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwyfHxtaW5pbWFsJTIwZ2VvbWV0cmljJTIwbG9nb3xlbnwwfHx8fDE3ODQ1NDExNzF8MA&ixlib=rb-4.1.0&q=85";
+export const DEFAULT_COMPANY_LOGO = "";
 export const DEFAULT_CLIENT_LOGO = "https://images.pexels.com/photos/19023561/pexels-photo-19023561.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 
 const getInitialDate = () => {
