@@ -152,8 +152,8 @@ export default function Home() {
           <div className="text-center flex flex-col items-center">
             <div className="flex items-center justify-center gap-0 mb-6">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="Quote Logo" className="w-16 h-16 object-contain" />
-              <span className="text-4xl font-bold tracking-tighter text-[#1b365d] leading-none mb-0.5">UOTE</span>
+              <img src="/logo.png" alt="Quote Logo" className="w-16 h-16 object-contain z-10" />
+              <span className="text-[2.5rem] font-bold tracking-tighter text-[#1b365d] leading-none mb-0.5 -ml-1">UOTE</span>
             </div>
             <h1 className="text-2xl font-bold tracking-tight text-primary">Hoş Geldiniz</h1>
             <p className="text-sm text-muted-foreground mt-2">
