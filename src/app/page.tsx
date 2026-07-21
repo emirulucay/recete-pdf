@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState, ChangeEvent } from "react";
 import { useInvoiceState } from "@/hooks/use-invoice-state";
 import { Button } from "@/components/ui/button";
@@ -164,8 +165,7 @@ export default function Home() {
         <div className="w-full max-w-md bg-surface border border-border rounded-xl shadow-2xl p-8 flex flex-col gap-6">
           <div className="text-center flex flex-col items-center">
             <div className="flex items-center justify-center mb-6">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/quote.svg" alt="Quote Logo" className="h-12 w-auto object-contain" />
+              <Image src="/quote.svg" alt="Quote Logo" width={100} height={48} className="h-12 w-auto object-contain" priority />
             </div>
             <h1 className="text-2xl font-bold tracking-tight text-primary">Hoş Geldiniz</h1>
             <p className="text-sm text-muted-foreground mt-2">
@@ -266,8 +266,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4 mt-2 p-3 border border-border rounded-md bg-background">
                 {activeProfile.logoBase64 ? (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={activeProfile.logoBase64} alt="Logo" className="w-12 h-12 object-contain bg-white rounded border border-border" />
+                  <Image src={activeProfile.logoBase64} alt="Logo" width={48} height={48} className="w-12 h-12 object-contain bg-white rounded border border-border" />
                 ) : (
                   <div className="w-12 h-12 flex items-center justify-center bg-muted rounded border border-dashed border-border text-[10px] leading-tight text-center text-muted-foreground p-1">Logo Yok</div>
                 )}
@@ -511,8 +510,7 @@ export default function Home() {
               {/* Footer (Logo & Freelancer Info) */}
               <div className="mt-auto pt-12 flex flex-col items-center text-center gap-4">
                 {activeProfile.logoBase64 && (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={activeProfile.logoBase64} alt="Company Logo" className="h-16 object-contain max-w-[200px]" />
+                  <Image src={activeProfile.logoBase64} alt="Company Logo" width={200} height={64} className="h-16 w-auto object-contain max-w-[200px]" />
                 )}
                 <div className="flex flex-col">
                   <p className="font-bold text-lg">{activeProfile.companyName}</p>
