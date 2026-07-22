@@ -32,6 +32,7 @@ export const TRANSLATIONS = {
     companyNamePlaceholder: "Ad Soyad veya Şirket",
     contactInfoLabel: "İletişim Bilgileri",
     contactInfoPlaceholder: "Email, Telefon, Adres",
+    footerPreviewTitle: "Fatura Altbilgisi Canlı Önizleme",
     getStartedButton: "Hemen Başla",
 
     // Profile & Settings Panel
@@ -107,6 +108,7 @@ export const TRANSLATIONS = {
     companyNamePlaceholder: "Full Name or Company Name",
     contactInfoLabel: "Contact Information",
     contactInfoPlaceholder: "Email, Phone, Address",
+    footerPreviewTitle: "Invoice Footer Live Preview",
     getStartedButton: "Get Started",
 
     // Profile & Settings Panel

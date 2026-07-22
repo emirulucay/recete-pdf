@@ -64,6 +64,9 @@ export default function Home() {
   const [showSupportModal, setShowSupportModal] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState<1 | 2>(1);
 
+  const [newCompanyName, setNewCompanyName] = useState("");
+  const [newContactInfo, setNewContactInfo] = useState("");
+
   if (!state.isLoaded) return null;
 
   const {
@@ -138,8 +141,8 @@ export default function Home() {
   };
 
   const handleCreateProfile = () => {
-    const companyName = (document.getElementById("new-company-name") as HTMLInputElement)?.value || "";
-    const contactInfo = (document.getElementById("new-contact-info") as HTMLTextAreaElement)?.value || "";
+    const companyName = newCompanyName.trim();
+    const contactInfo = newContactInfo.trim();
 
     if (companyName) {
       saveAsNewProfile({
@@ -148,6 +151,8 @@ export default function Home() {
         contactInfo,
         logoBase64: DEFAULT_COMPANY_LOGO
       });
+      setNewCompanyName("");
+      setNewContactInfo("");
       setShowProfileModal(false);
     } else {
       toast.error(language === "tr" ? "Şirket/Ad kısmı zorunludur" : "Company / Your Name is required");
@@ -165,6 +170,23 @@ export default function Home() {
       reader.readAsDataURL(file);
     }
   };
+
+  // Live Footer Preview Component for Modals & Onboarding
+  const renderFooterPreview = () => (
+    <div className="flex flex-col gap-1.5 mt-1">
+      <Label className="text-[11px] text-muted-foreground font-bold uppercase tracking-wider">
+        {t.footerPreviewTitle}
+      </Label>
+      <div className="p-3.5 border border-dashed border-border rounded-lg bg-muted/20 flex flex-col items-center text-center">
+        <p className="font-bold text-base text-primary">
+          {newCompanyName || (language === "tr" ? "Ad Soyad / Şirket" : "Full Name or Company Name")}
+        </p>
+        <p className="text-xs text-muted-foreground whitespace-pre-wrap mt-1 leading-relaxed">
+          {newContactInfo || (language === "tr" ? "Email: info@sirket.com\nTel: +90 555 123 4567\nAdres: İstanbul, Türkiye" : "Email: info@company.com\nPhone: +1 555 123 4567\nAddress: New York, USA")}
+        </p>
+      </div>
+    </div>
+  );
 
   // STEP 1 & STEP 2 ONBOARDING
   if (forceProfileCreation) {
@@ -276,16 +298,26 @@ export default function Home() {
             <div className="grid gap-4 mt-2">
               <div className="grid gap-2">
                 <Label htmlFor="new-company-name">{t.companyNameLabel}</Label>
-                <Input id="new-company-name" placeholder={t.companyNamePlaceholder} />
+                <Input
+                  id="new-company-name"
+                  placeholder={t.companyNamePlaceholder}
+                  value={newCompanyName}
+                  onChange={(e) => setNewCompanyName(e.target.value)}
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="new-contact-info">{t.contactInfoLabel}</Label>
                 <textarea
                   id="new-contact-info"
                   placeholder={t.contactInfoPlaceholder}
-                  className="flex min-h-[100px] w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
+                  value={newContactInfo}
+                  onChange={(e) => setNewContactInfo(e.target.value)}
+                  className="flex min-h-[90px] w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
                 />
               </div>
+
+              {/* Live Preview */}
+              {renderFooterPreview()}
 
               <div className="flex gap-3 mt-2">
                 <Button
@@ -315,9 +347,13 @@ export default function Home() {
       {/* Profile Modal (Used when adding subsequent profiles) */}
       {showProfileModal && (
         <div className="fixed inset-0 z-[100] bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-surface p-6 rounded-lg shadow-2xl border border-border w-full max-w-[400px] flex flex-col gap-6 font-plex relative">
+          <div className="bg-surface p-6 rounded-lg shadow-2xl border border-border w-full max-w-[440px] flex flex-col gap-5 font-plex relative">
             <button
-              onClick={() => setShowProfileModal(false)}
+              onClick={() => {
+                setNewCompanyName("");
+                setNewContactInfo("");
+                setShowProfileModal(false);
+              }}
               className="absolute top-4 right-4 text-muted-foreground hover:text-primary cursor-pointer"
             >
               <X className="w-5 h-5" />
@@ -328,19 +364,40 @@ export default function Home() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="new-company-name">{t.companyNameLabel}</Label>
-              <Input id="new-company-name" placeholder={t.companyNamePlaceholder} />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="new-contact-info">{t.contactInfoLabel}</Label>
-              <textarea
-                id="new-contact-info"
-                placeholder={t.contactInfoPlaceholder}
-                className="flex min-h-[100px] w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
+              <Label htmlFor="modal-company-name">{t.companyNameLabel}</Label>
+              <Input
+                id="modal-company-name"
+                placeholder={t.companyNamePlaceholder}
+                value={newCompanyName}
+                onChange={(e) => setNewCompanyName(e.target.value)}
               />
             </div>
+            <div className="grid gap-2">
+              <Label htmlFor="modal-contact-info">{t.contactInfoLabel}</Label>
+              <textarea
+                id="modal-contact-info"
+                placeholder={t.contactInfoPlaceholder}
+                value={newContactInfo}
+                onChange={(e) => setNewContactInfo(e.target.value)}
+                className="flex min-h-[90px] w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
+              />
+            </div>
+
+            {/* Live Preview */}
+            {renderFooterPreview()}
+
             <div className="flex justify-end gap-3 mt-2">
-              <Button variant="ghost" onClick={() => setShowProfileModal(false)} className="cursor-pointer">{t.cancelButton}</Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setNewCompanyName("");
+                  setNewContactInfo("");
+                  setShowProfileModal(false);
+                }}
+                className="cursor-pointer"
+              >
+                {t.cancelButton}
+              </Button>
               <Button onClick={handleCreateProfile} className="cursor-pointer">{t.saveButton}</Button>
             </div>
           </div>
