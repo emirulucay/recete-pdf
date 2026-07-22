@@ -20,10 +20,58 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Quote",
+  "url": "https://quote.emirulucay.com",
+  "description": "Create, customize, and export clean PDF quotes and invoices in seconds. Built by Emir Uluçay.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Emir Uluçay",
+    "url": "https://github.com/emirulucay",
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://quote.emirulucay.com"),
   title: "Quote – Minimal & Fast Invoice Generator",
   description: "Create, customize, and export clean PDF quotes and invoices in seconds. Built by Emir Uluçay.",
+  keywords: [
+    "invoice generator",
+    "quote generator",
+    "fatura oluşturma",
+    "teklif hazırlama",
+    "pdf invoice",
+    "free invoice builder",
+    "minimal invoice",
+    "online fatura",
+    "fatura pdf",
+  ],
+  authors: [{ name: "Emir Uluçay", url: "https://quote.emirulucay.com" }],
+  creator: "Emir Uluçay",
+  publisher: "Quote",
+  alternates: {
+    canonical: "https://quote.emirulucay.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Quote – Minimal & Fast Invoice Generator",
     description: "Create, customize, and export clean PDF quotes and invoices in seconds. Built by Emir Uluçay.",
@@ -31,11 +79,21 @@ export const metadata: Metadata = {
     siteName: "Quote",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Quote – Minimal & Fast Invoice Generator",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Quote – Minimal & Fast Invoice Generator",
     description: "Create, customize, and export clean PDF quotes and invoices in seconds. Built by Emir Uluçay.",
+    creator: "@emirulucay",
+    images: ["/opengraph-image.jpg"],
   },
   icons: {
     icon: [
@@ -55,7 +113,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="tr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${plexSans.className} ${outfit.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}
       >

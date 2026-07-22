@@ -502,6 +502,7 @@ export default function Home() {
       {/* Main Content */}
       {activeProfile && (
         <>
+          <h1 className="sr-only">Quote – Minimal & Fast Invoice Generator</h1>
           {/* Left Panel */}
           <div className="w-full lg:w-112.5 xl:w-125 h-full border-r border-border bg-surface shrink-0 flex flex-col relative z-10">
             <div className="flex-1 overflow-y-auto p-6 md:p-8 flex flex-col gap-8">
