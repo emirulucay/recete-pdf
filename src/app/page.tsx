@@ -316,7 +316,12 @@ export default function Home() {
 
               <Button
                 className="w-full mt-2 py-6 text-lg cursor-pointer"
-                onClick={() => setOnboardingStep(2)}
+                onClick={() => {
+                  setOnboardingStep(2);
+                  setTimeout(() => {
+                    document.getElementById("new-company-name")?.focus();
+                  }, 50);
+                }}
               >
                 {t.continueButton} <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
@@ -330,6 +335,7 @@ export default function Home() {
                   placeholder={t.companyNamePlaceholder}
                   value={newCompanyName}
                   onChange={(e) => setNewCompanyName(e.target.value)}
+                  autoFocus
                 />
               </div>
               <div className="grid gap-2">
