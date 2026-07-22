@@ -18,7 +18,7 @@ const getInitialDate = () => {
 };
 
 const emptyInvoiceData: InvoiceData = {
-  clientName: "Muhammet Bilal Apaydın",
+  clientName: "Ahmet Yılmaz",
   date: getInitialDate(),
   notes: "Bizi tercih ettiğiniz için teşekkür ederiz.",
   kdvRate: 0,

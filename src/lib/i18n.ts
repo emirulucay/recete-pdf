@@ -59,7 +59,7 @@ export const TRANSLATIONS = {
     customTaxRatePlaceholder: "Örn: 8.875 veya 18",
     addTaxButton: "Vergiyi Kaydet",
     clientNameLabel: "Müşteri Adı",
-    clientNamePlaceholder: "Muhammet Bilal Apaydın",
+    clientNamePlaceholder: "Ahmet Yılmaz",
 
     // Line Items
     servicesTitle: "Hizmetler",
@@ -142,7 +142,7 @@ export const TRANSLATIONS = {
     customTaxRatePlaceholder: "e.g. 8.875 or 18",
     addTaxButton: "Save Tax",
     clientNameLabel: "Client Name",
-    clientNamePlaceholder: "Muhammet Bilal Apaydın",
+    clientNamePlaceholder: "John Doe",
 
     // Line Items
     servicesTitle: "Services",

@@ -1,4 +1,4 @@
-# Quote by Emir Ulucay
+# Quote – Minimal & Fast Invoice Generator
 
 Modern, hızlı ve profesyonel teklif & fatura oluşturma aracı. 
 

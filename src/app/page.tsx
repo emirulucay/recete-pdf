@@ -655,7 +655,8 @@ export default function Home() {
                       placeholder={t.clientNamePlaceholder}
                       onFocus={() => {
                         if (
-                          invoiceData.clientName === "Muhammet Bilal Apaydın" ||
+                          invoiceData.clientName === "Ahmet Yılmaz" ||
+                          invoiceData.clientName === "John Doe" ||
                           invoiceData.clientName === "Müşteri Adı" ||
                           invoiceData.clientName === "Client Name"
                         ) {
