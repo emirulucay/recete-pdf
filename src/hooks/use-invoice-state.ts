@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Profile, LineItem, InvoiceData } from "../types";
+import { Language, Currency, TRANSLATIONS } from "../lib/i18n";
 import { toast } from "sonner";
 
 export const DEFAULT_COMPANY_LOGO = "";
@@ -23,8 +24,27 @@ export function useInvoiceState() {
   const [activeProfileId, setActiveProfileId] = useState<string>("");
   const [invoiceData, setInvoiceData] = useState<InvoiceData>(emptyInvoiceData);
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
+  const [language, setLanguageState] = useState<Language>("tr");
+  const [currency, setCurrencyState] = useState<Currency>("TRY");
 
   useEffect(() => {
+    // Load preferences
+    const savedPrefs = localStorage.getItem("quote-preferences");
+    if (savedPrefs) {
+      try {
+        const parsed = JSON.parse(savedPrefs);
+        if (parsed.language && (parsed.language === "tr" || parsed.language === "en")) {
+          setLanguageState(parsed.language);
+        }
+        if (parsed.currency && ["TRY", "USD", "EUR", "GBP"].includes(parsed.currency)) {
+          setCurrencyState(parsed.currency);
+        }
+      } catch (e) {
+        console.error("Failed to parse preferences", e);
+      }
+    }
+
+    // Load profiles
     const savedProfiles = localStorage.getItem("invoice-profiles");
     if (savedProfiles) {
       try {
@@ -50,24 +70,40 @@ export function useInvoiceState() {
     }
   }, [profiles, isLoaded]);
 
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem("quote-preferences", JSON.stringify({ language, currency }));
+    }
+  }, [language, currency, isLoaded]);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+  };
+
+  const setCurrency = (curr: Currency) => {
+    setCurrencyState(curr);
+  };
+
   const activeProfile = profiles.find((p) => p.id === activeProfileId) || profiles[0] || null;
 
   const updateProfile = (id: string, data: Partial<Profile>) => {
     setProfiles((prev) => prev.map((p) => (p.id === id ? { ...p, ...data } : p)));
   };
 
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+
   const saveAsNewProfile = (data: Partial<Profile>) => {
     const newId = crypto.randomUUID();
     const newProfile: Profile = {
       id: newId,
-      profileName: data.profileName || `Yeni Profil (${profiles.length + 1})`,
+      profileName: data.companyName || data.profileName || `${t.newProfileTitle} (${profiles.length + 1})`,
       companyName: data.companyName || "",
       contactInfo: data.contactInfo || "",
       logoBase64: data.logoBase64 || DEFAULT_COMPANY_LOGO,
     };
     setProfiles((prev) => [...prev, newProfile]);
     setActiveProfileId(newId);
-    toast.success("Yeni profil oluşturuldu");
+    toast.success(t.profileCreated);
   };
 
   const addLineItem = () => {
@@ -99,5 +135,10 @@ export function useInvoiceState() {
     addLineItem,
     updateLineItem,
     removeLineItem,
+    language,
+    setLanguage,
+    currency,
+    setCurrency,
+    t,
   };
 }
