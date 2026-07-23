@@ -1,13 +1,12 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from "next";
-import { Outfit, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Geist, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["600", "700"],
 });
 
 const plexSans = IBM_Plex_Sans({
@@ -122,7 +121,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${plexSans.className} ${outfit.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${plexSans.className} ${geist.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {children}
         <Toaster position="bottom-right" />
